@@ -17,8 +17,10 @@ public class QuadConfiguration {
 	
 	
 	SerialCommunication serial;
+	PIDConfiguration pidConfig;
 	public QuadConfiguration(SerialCommunication serial){
 		this.serial=serial;
+		pidConfig=new PIDConfiguration(serial);
 	}
 	public boolean isGoingUp() {
 		return goingUp;
@@ -48,6 +50,12 @@ public class QuadConfiguration {
 	}
 	public int getSpeed(){
 		return speed;
+	}
+	public PIDConfiguration getPidConfig() {
+		return pidConfig;
+	}
+	public void setPidConfig(PIDConfiguration pidConfig) {
+		this.pidConfig = pidConfig;
 	}
 	
 	

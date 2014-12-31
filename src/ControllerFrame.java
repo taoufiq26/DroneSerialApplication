@@ -16,7 +16,7 @@ public class ControllerFrame extends JFrame implements Runnable {
 		panel = new ControllerPanel(config);
 		klistener = new CustomKeyListner(config);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(500, 500);
+		setSize(500, 600);
 		setResizable(false);
 		setVisible(true);
 		setContentPane(panel);
@@ -35,6 +35,47 @@ public class ControllerFrame extends JFrame implements Runnable {
 
 				if (config.isGoingDown())
 					config.decSpeed();
+				
+				//ADING PID PITCH
+				if(config.getPidConfig().isKppUp())
+					config.getPidConfig().addKpp();
+				
+				if(config.getPidConfig().isKipUp())
+					config.getPidConfig().addKip();
+				
+				if(config.getPidConfig().isKdpUp())
+					config.getPidConfig().addKdp();
+				
+				//DECREASING PID PITCH
+				if(config.getPidConfig().isKppDown())
+					config.getPidConfig().decKpp();
+				
+				if(config.getPidConfig().isKipDown())
+					config.getPidConfig().decKip();
+				
+				if(config.getPidConfig().isKdpDown())
+					config.getPidConfig().decKdp();
+				
+				
+				//ADING PID ROLL
+				if(config.getPidConfig().isKprUp())
+					config.getPidConfig().addKpr();
+				
+				if(config.getPidConfig().isKirUp())
+					config.getPidConfig().addKir();
+				
+				if(config.getPidConfig().isKdrUp())
+					config.getPidConfig().addKdr();
+				
+				//DECREASING PID ROLL
+				if(config.getPidConfig().isKprDown())
+					config.getPidConfig().decKpr();
+				
+				if(config.getPidConfig().isKirDown())
+					config.getPidConfig().decKir();
+				
+				if(config.getPidConfig().isKdrDown())
+					config.getPidConfig().decKdr();
 				
 				panel.repaint();
 			} catch (InterruptedException e) {
