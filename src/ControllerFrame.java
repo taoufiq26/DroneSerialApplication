@@ -36,6 +36,18 @@ public class ControllerFrame extends JFrame implements Runnable {
 				if (config.isGoingDown())
 					config.decSpeed();
 				
+				if(config.isAddingPitchError())
+					config.addPitchError();
+				
+				if(config.isDecPitchError())
+					config.decPitchError();
+				
+				if(config.isAddingRollError())
+					config.addRollError();
+				
+				if(config.isDecRollError())
+					config.decRollError();
+				
 				//ADING PID PITCH
 				if(config.getPidConfig().isKppUp())
 					config.getPidConfig().addKpp();

@@ -20,6 +20,8 @@ public class ControllerPanel extends JPanel{
 		
 		paintSpeed(g, 30,200,20,200);
 		
+		paintRollBar(g,Color.blue, 80, 320, 60, 20);
+		paintPitchBar(g,Color.red,130,270,20,60);
 		DecimalFormat df=new DecimalFormat("#0.00");
 		g.drawString("PITCH PID", 300, 10);
 		paintPIDBar(g, Color.red, 250, 20, "KPP : "+df.format(config.getPidConfig().getKPP()), 100, config.getPidConfig().getKPP()*(100/PIDConfiguration.MAX_KP));
@@ -72,5 +74,35 @@ public class ControllerPanel extends JPanel{
 				(int) (maxHeight-(currentHeight)/((maxHeight)/currentHeight)));
 		g.setColor(c);
 		g.drawString(name, x-20, (int) (y+maxHeight+25));
+	}
+	
+	public void paintRollBar(Graphics g,Color c,int x,int y,int w,int h){
+		g.setColor(Color.white);
+		g.drawRect(x-1, y-1, 2*w+1, h+1);
+		g.setColor(c);
+		//g.fillRect(100, 10, 50, 20);
+		//g.fillRect(100, 50, 50, 20);
+		double r=config.getRollError();
+		double ratio=w/config.MAX_ERROR;
+		if(r>=0)
+			g.fillRect(x+w, y, (int) (r*ratio), h);
+		else
+			g.fillRect(x+w+(int)(r*ratio), y,(int) (-r*ratio), h);
+		g.setColor(Color.white);
+		g.drawString("RollE :"+r, (int) (x+2*w-0.2*w), y+h+15);
+	}
+	public void paintPitchBar(Graphics g,Color c,int x,int y,int w,int h){
+		g.setColor(Color.white);
+		g.drawRect(x-1, y-1, w+1, 2*h+1);
+		g.setColor(c);
+		//g.fillRect(100, 10, 50, 20);
+		//g.fillRect(100, 50, 50, 20);
+		double p=config.getPitchError();
+		double ratio=h/config.MAX_ERROR;
+		if(p<0)
+			g.fillRect(x, y+h, w, (int) (-p*ratio));
+		else
+			g.fillRect(x, y+h-(int)(p*ratio),w, (int) (p*ratio));
+		g.drawString("PitchE :"+p, (int) (x-15), y-15);
 	}
 }

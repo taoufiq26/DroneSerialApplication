@@ -10,12 +10,24 @@ public class CustomKeyListner implements KeyListener{
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
-
+		//SPEED CONTROLE
 		if(e.getKeyCode()==e.VK_Z)
 			config.setGoingUp(true);
 		
 		if(e.getKeyCode()==e.VK_S)
 			config.setGoingDown(true);
+		
+		//ROLL AND PITCH CONTROLE
+		if(e.getKeyCode() == e.VK_UP)
+			config.setAddingPitchError(true);
+		if(e.getKeyCode() == e.VK_DOWN)
+			config.setDecPitchError(true);
+		
+		if(e.getKeyCode() == e.VK_RIGHT)
+			config.setAddingRollError(true);
+		if(e.getKeyCode() == e.VK_LEFT)
+			config.setDecRollError(true);
+		
 		
 		if(e.getKeyCode() == e.VK_8) // adding kp pitch
 			config.getPidConfig().setKppUp(true);
@@ -58,6 +70,25 @@ public class CustomKeyListner implements KeyListener{
 		
 		if(e.getKeyCode()==e.VK_S)
 			config.setGoingDown(false);
+		
+		//ROLL AND PITCH CONTROLE
+		if(e.getKeyCode() == e.VK_UP){
+			config.setAddingPitchError(false);
+			config.setPitchError(0);
+		}
+		if(e.getKeyCode() == e.VK_DOWN){
+			config.setDecPitchError(false);
+			config.setPitchError(0);
+		}
+		
+		if(e.getKeyCode() == e.VK_RIGHT){
+			config.setAddingRollError(false);
+			config.setRollError(0);
+		}
+		if(e.getKeyCode() == e.VK_LEFT){
+			config.setDecRollError(false);
+			config.setRollError(0);
+		}
 		
 		//PID PITCH
 		if(e.getKeyCode() == e.VK_8) // decrease kp pitch

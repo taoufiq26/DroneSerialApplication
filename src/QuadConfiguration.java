@@ -6,6 +6,9 @@ public class QuadConfiguration {
 	public static int MAX_SPEED=2000;
 	public static double speedStep=10;
 	
+	public static double MAX_ERROR=40;
+	public static double MIN_ERROR=-40;
+	public static double ERROR_STEP=0.5;
 	//CONFIGURATION STATE
 	
 	//SPEED
@@ -13,8 +16,13 @@ public class QuadConfiguration {
 	private boolean goingUp=false;
 	private boolean goingDown=false;
 	
-
-	
+	//ROLL AND PITCH ERRORS
+	private double rollError=0;
+	private double pitchError=0;
+	private boolean addingPitchError=false;
+	private boolean decPitchError=false;
+	private boolean addingRollError=false;
+	private boolean decRollError=false;
 	
 	SerialCommunication serial;
 	PIDConfiguration pidConfig;
@@ -48,8 +56,75 @@ public class QuadConfiguration {
 		else
 			serial.send("sending remove speed");
 	}
+	
+	public void addPitchError(){
+		pitchError+=ERROR_STEP;
+		if(pitchError>MAX_ERROR)
+			pitchError=MAX_ERROR;
+		else
+			serial.send("Adding pitch error");
+	}
+	public void decPitchError(){
+		pitchError-=ERROR_STEP;
+		if(pitchError<MIN_ERROR)
+			pitchError=MIN_ERROR;
+		else
+			serial.send("Decreasing pitch error");
+	}
+	public void addRollError(){
+		rollError+=ERROR_STEP;
+		if(rollError>MAX_ERROR)
+			rollError=MAX_ERROR;
+		else
+			serial.send("Adding Roll error");
+	}
+	public void decRollError(){
+		rollError-=ERROR_STEP;
+		if(rollError<MIN_ERROR)
+			rollError=MIN_ERROR;
+		else
+			serial.send("Decreasing Roll error");
+	}
+	
 	public int getSpeed(){
 		return speed;
+	}
+	public double getRollError() {
+		return rollError;
+	}
+	public void setRollError(double rollError) {
+		this.rollError = rollError;
+	}
+	public double getPitchError() {
+		return pitchError;
+	}
+	public void setPitchError(double pitchError) {
+		this.pitchError = pitchError;
+	}
+	public boolean isDecPitchError() {
+		return decPitchError;
+	}
+	public void setDecPitchError(boolean decPitchError) {
+		this.decPitchError = decPitchError;
+	}
+	public boolean isDecRollError() {
+		return decRollError;
+	}
+	public void setDecRollError(boolean decRollError) {
+		this.decRollError = decRollError;
+	}
+	
+	public boolean isAddingPitchError() {
+		return addingPitchError;
+	}
+	public void setAddingPitchError(boolean addingPitchError) {
+		this.addingPitchError = addingPitchError;
+	}
+	public boolean isAddingRollError() {
+		return addingRollError;
+	}
+	public void setAddingRollError(boolean addingRollError) {
+		this.addingRollError = addingRollError;
 	}
 	public PIDConfiguration getPidConfig() {
 		return pidConfig;
