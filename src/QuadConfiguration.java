@@ -10,7 +10,8 @@ public class QuadConfiguration {
 	public static double MIN_ERROR=-40;
 	public static double ERROR_STEP=0.5;
 	//CONFIGURATION STATE
-	
+	// START AND STOP
+	private boolean ON=false;
 	//SPEED
 	private int speed=MIN_SPEED;
 	private boolean goingUp=false;
@@ -29,6 +30,8 @@ public class QuadConfiguration {
 	public QuadConfiguration(SerialCommunication serial){
 		this.serial=serial;
 		pidConfig=new PIDConfiguration(serial);
+		initialize();
+		pidConfig.setToZero();
 	}
 	public boolean isGoingUp() {
 		return goingUp;
@@ -132,6 +135,19 @@ public class QuadConfiguration {
 	public void setPidConfig(PIDConfiguration pidConfig) {
 		this.pidConfig = pidConfig;
 	}
+	public void initialize() {
+		// TODO Auto-generated method stub
+		speed=MIN_SPEED;
 	
+	}
+	public boolean isON() {
+		return ON;
+	}
+	public void setON(boolean oN) {
+		ON = oN;
+	}
+	public SerialCommunication getSerial(){
+		return serial;
+	}
 	
 }

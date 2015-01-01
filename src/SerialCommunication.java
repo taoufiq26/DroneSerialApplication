@@ -15,11 +15,11 @@ public class SerialCommunication implements SerialPortEventListener {
 
 	SerialPort serialPort;
 	/** The port we're normally going to use. */
-	private static final String PORT_NAMES[] = {"COM3" };
+	private static final String PORT_NAMES[] = {"COM8" };
 	private BufferedReader input;
 	private OutputStream output;
 	private static final int TIME_OUT = 2000;
-	private static final int DATA_RATE = 9600;
+	private static final int DATA_RATE = 115200;
 
 	public void initialize() {
 
@@ -79,9 +79,11 @@ public class SerialCommunication implements SerialPortEventListener {
 		}
 	}
 	
-	synchronized public void send(String string) {
+	 public void send(String string) {
 		// TODO Auto-generated method stub
+		string+="\n";
 		System.out.println(string);
+		
 		if(output==null){
 			System.out.println("Aucun port connecté");
 			return;

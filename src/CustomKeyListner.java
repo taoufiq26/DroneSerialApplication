@@ -10,6 +10,29 @@ public class CustomKeyListner implements KeyListener{
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
+		
+		//START RESTART CONTROLE 
+		if(e.getKeyCode()==e.VK_ESCAPE){
+			config.initialize();
+			config.pidConfig.setToZero();
+			config.getSerial().send(""+Messages.SHUTDOWN_QUAD);
+			config.setON(false);
+		}
+		if(e.getKeyCode()==e.VK_ENTER){
+			if(!config.isON()){
+				config.initialize();
+				config.pidConfig.initialize();
+				config.getSerial().send(""+Messages.RESTART_QUAD);
+				config.getSerial().send(""+Messages.ACTIVATE_PITCH);
+				config.getSerial().send(""+Messages.ACTIVATE_ROLL);
+			}else{
+				config.initialize();
+				config.pidConfig.setToZero();
+				config.getSerial().send(""+Messages.SHUTDOWN_QUAD);
+			}
+			config.setON(!config.isON());
+			
+		}
 		//SPEED CONTROLE
 		if(e.getKeyCode()==e.VK_Z)
 			config.setGoingUp(true);

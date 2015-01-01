@@ -1,15 +1,16 @@
+import java.awt.Color;
 import java.awt.Panel;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class ControllerFrame extends JFrame implements Runnable {
-	public static int FRAMESPEED = 30;
+	public static int FRAMESPEED = 80;
 	QuadConfiguration config;
 	SerialCommunication serial;
 	ControllerPanel panel;
 	CustomKeyListner klistener;
-
 	public ControllerFrame() {
 		SerialCommunication serial = new SerialCommunication();
 		serial.initialize();
