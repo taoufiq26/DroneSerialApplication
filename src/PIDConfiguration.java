@@ -232,6 +232,26 @@ public class PIDConfiguration {
 	public double getKIR() {
 		return KIR;
 	}
+	public void initialize() {
+		// TODO Auto-generated method stub
+		KPP= 3.4;
+		KDP= 100;
+		KIP= 0.01;
+		
+		KPR= 3.4;
+		KDR= 100;
+		KIR= 0.01;
+	}
+	public void setToZero() {
+		// TODO Auto-generated method stub
+		KPP= 0;
+		KDP= 0;
+		KIP= 0;
+		
+		KPR= 0;
+		KDR= 0;
+		KIR= 0;
+	}
 	
 	
 	
