@@ -45,7 +45,7 @@ public class PIDConfiguration {
 		if(KPP>MAX_KP)
 			KPP=MAX_KP;
 		else{
-			serial.send("ajout KP PITCH");
+			serial.send(Messages.ADD_KPP+"");
 		}
 	}
 	public void decKpp(){
@@ -53,7 +53,7 @@ public class PIDConfiguration {
 		if(KPP<MIN_KP)
 			KPP=MIN_KP;
 		else{
-			serial.send("decrease KP PITCH");
+			serial.send(""+Messages.DEC_KPP);
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class PIDConfiguration {
 		if(KDP>MAX_KD)
 			KDP=MAX_KD;
 		else{
-			serial.send("ajout KD PITCH");
+			serial.send(""+Messages.ADD_KDP);
 		}
 	}
 	public void decKdp(){
@@ -70,7 +70,7 @@ public class PIDConfiguration {
 		if(KDP<MIN_KD)
 			KDP=MIN_KD;
 		else{
-			serial.send("decrease KD PITCH");
+			serial.send(""+Messages.DEC_KDP);
 		}
 	}
 	
@@ -79,7 +79,7 @@ public class PIDConfiguration {
 		if(KIP>MAX_KI)
 			KIP=MAX_KI;
 		else{
-			serial.send("ajout KI PITCH");
+			serial.send(""+Messages.ADD_KIP);
 		}
 	}
 	public void decKip(){
@@ -87,7 +87,7 @@ public class PIDConfiguration {
 		if(KIP<MIN_KI)
 			KIP=MIN_KI;
 		else{
-			serial.send("decrease KI PITCH");
+			serial.send(""+Messages.DEC_KIP);
 		}
 	}
 	
@@ -96,7 +96,7 @@ public class PIDConfiguration {
 		if(KPR>MAX_KP)
 			KPR=MAX_KP;
 		else{
-			serial.send("ajout KP ROLL");
+			serial.send(""+Messages.ADD_KPR);
 		}
 	}
 	public void decKpr(){
@@ -104,7 +104,7 @@ public class PIDConfiguration {
 		if(KPR<MIN_KP)
 			KPR=MIN_KP;
 		else{
-			serial.send("decrease KP ROLL");
+			serial.send(""+Messages.DEC_KPR);
 		}
 	}
 	
@@ -113,7 +113,7 @@ public class PIDConfiguration {
 		if(KDR>MAX_KD)
 			KDR=MAX_KD;
 		else{
-			serial.send("ajout KD ROLL");
+			serial.send(""+Messages.ADD_KDR);
 		}
 	}
 	public void decKdr(){
@@ -121,7 +121,7 @@ public class PIDConfiguration {
 		if(KDR<MIN_KD)
 			KDR=MIN_KD;
 		else{
-			serial.send("decrease KD ROLL");
+			serial.send(""+Messages.DEC_KDR);
 		}
 	}
 	
@@ -130,7 +130,7 @@ public class PIDConfiguration {
 		if(KIR>MAX_KI)
 			KIR=MAX_KI;
 		else{
-			serial.send("ajout KI ROLL");
+			serial.send(""+Messages.ADD_KIR);
 		}
 	}
 	public void decKir(){
@@ -138,7 +138,7 @@ public class PIDConfiguration {
 		if(KIR<MIN_KI)
 			KIR=MIN_KI;
 		else{
-			serial.send("decrease KI ROLL");
+			serial.send(""+Messages.DEC_KIR);
 		}
 	}
 

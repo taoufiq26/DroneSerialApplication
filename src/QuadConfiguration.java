@@ -47,14 +47,14 @@ public class QuadConfiguration {
 		if(speed>MAX_SPEED)
 			speed=MAX_SPEED;
 		else
-			serial.send("sending add speed");
+			serial.send(""+Messages.ADD_SPEED);
 	}
 	public void decSpeed(){
 		speed-=speedStep;
 		if(speed<MIN_SPEED)
 			speed=MIN_SPEED;
 		else
-			serial.send("sending remove speed");
+			serial.send(""+Messages.DEC_SPEED);
 	}
 	
 	public void addPitchError(){
@@ -62,28 +62,28 @@ public class QuadConfiguration {
 		if(pitchError>MAX_ERROR)
 			pitchError=MAX_ERROR;
 		else
-			serial.send("Adding pitch error");
+			serial.send(""+Messages.ADD_PITCHERROR);
 	}
 	public void decPitchError(){
 		pitchError-=ERROR_STEP;
 		if(pitchError<MIN_ERROR)
 			pitchError=MIN_ERROR;
 		else
-			serial.send("Decreasing pitch error");
+			serial.send(""+Messages.DEC_PITCHERROR);
 	}
 	public void addRollError(){
 		rollError+=ERROR_STEP;
 		if(rollError>MAX_ERROR)
 			rollError=MAX_ERROR;
 		else
-			serial.send("Adding Roll error");
+			serial.send(""+Messages.ADD_ROLLERROR);
 	}
 	public void decRollError(){
 		rollError-=ERROR_STEP;
 		if(rollError<MIN_ERROR)
 			rollError=MIN_ERROR;
 		else
-			serial.send("Decreasing Roll error");
+			serial.send(""+Messages.DEC_ROLLERROR);
 	}
 	
 	public int getSpeed(){

@@ -12,6 +12,7 @@ public class ControllerFrame extends JFrame implements Runnable {
 
 	public ControllerFrame() {
 		SerialCommunication serial = new SerialCommunication();
+		serial.initialize();
 		config = new QuadConfiguration(serial);
 		panel = new ControllerPanel(config);
 		klistener = new CustomKeyListner(config);
