@@ -98,19 +98,24 @@ public class CustomKeyListner implements KeyListener{
 		if(e.getKeyCode() == e.VK_UP){
 			config.setAddingPitchError(false);
 			config.setPitchError(0);
+			config.getSerial().send(""+Messages.CLR_POFFSET);
 		}
 		if(e.getKeyCode() == e.VK_DOWN){
 			config.setDecPitchError(false);
 			config.setPitchError(0);
+			config.getSerial().send(""+Messages.CLR_POFFSET);
 		}
 		
 		if(e.getKeyCode() == e.VK_RIGHT){
 			config.setAddingRollError(false);
 			config.setRollError(0);
+			config.getSerial().send(""+Messages.CLR_ROFFSET);
 		}
+		
 		if(e.getKeyCode() == e.VK_LEFT){
 			config.setDecRollError(false);
 			config.setRollError(0);
+			config.getSerial().send(""+Messages.CLR_ROFFSET);
 		}
 		
 		//PID PITCH
@@ -146,7 +151,6 @@ public class CustomKeyListner implements KeyListener{
 		if(e.getKeyCode() == e.VK_COLON) // decrease kp pitch
 			config.getPidConfig().setKdrDown(false);
 	}
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub

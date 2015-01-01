@@ -6,6 +6,8 @@ public class Messages {
 	public static int DEC_PITCHERROR=28;
 	public static int ADD_ROLLERROR=25;
 	public static int DEC_ROLLERROR=26;
+	public static int CLR_ROFFSET=31;
+	public static int CLR_POFFSET=32;
 	
 	public static int ADD_KPP=1;
 	public static int DEC_KPP=2;
