@@ -1,7 +1,7 @@
 
 public class QuadConfiguration {
 	//CONFIGURATION STEPS AND RANGES
-	
+	private static QuadConfiguration quadConfig;
 	public static int MIN_SPEED=700;
 	public static int MAX_SPEED=2000;
 	public static double speedStep=10;
@@ -12,6 +12,8 @@ public class QuadConfiguration {
 	//CONFIGURATION STATE
 	// START AND STOP
 	private boolean ON=false;
+	private boolean onPitch=false;
+	private boolean onRoll=false;
 	//SPEED
 	private int speed=MIN_SPEED;
 	private boolean goingUp=false;
@@ -27,11 +29,16 @@ public class QuadConfiguration {
 	
 	SerialCommunication serial;
 	PIDConfiguration pidConfig;
-	public QuadConfiguration(SerialCommunication serial){
-		this.serial=serial;
-		pidConfig=new PIDConfiguration(serial);
+	private QuadConfiguration(){
+		serial=SerialCommunication.getInstance();
+		pidConfig=PIDConfiguration.getInstance();
 		initialize();
 		pidConfig.setToZero();
+	}
+	public static QuadConfiguration getInstance(){
+		if(quadConfig==null)
+			quadConfig=new QuadConfiguration();
+		return quadConfig;
 	}
 	public boolean isGoingUp() {
 		return goingUp;
@@ -148,6 +155,18 @@ public class QuadConfiguration {
 	}
 	public SerialCommunication getSerial(){
 		return serial;
+	}
+	public boolean isOnRoll() {
+		return onRoll;
+	}
+	public void setOnRoll(boolean onRoll) {
+		this.onRoll = onRoll;
+	}
+	public boolean isOnPitch() {
+		return onPitch;
+	}
+	public void setOnPitch(boolean onPitch) {
+		this.onPitch = onPitch;
 	}
 	
 }

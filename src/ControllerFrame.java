@@ -6,16 +6,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class ControllerFrame extends JFrame implements Runnable {
-	public static int FRAMESPEED = 80;
+	public static int FRAMESPEED = 60;
 	QuadConfiguration config;
 	SerialCommunication serial;
 	ControllerPanel panel;
 	CustomKeyListner klistener;
 	public ControllerFrame() {
-		SerialCommunication serial = new SerialCommunication();
+		SerialCommunication serial =SerialCommunication.getInstance();
 		serial.initialize();
-		config = new QuadConfiguration(serial);
-		panel = new ControllerPanel(config);
+		config = QuadConfiguration.getInstance();
+		panel = ControllerPanel.getInstance();
 		klistener = new CustomKeyListner(config);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(500, 600);

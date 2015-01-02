@@ -11,12 +11,27 @@ public class CustomKeyListner implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
+		if(e.getKeyCode()==e.VK_W){
+			config.initialize();
+			config.pidConfig.initialize();
+			config.setOnPitch(!config.isOnPitch());
+			SerialCommunication.getInstance().send(""+Messages.ACTIVATE_PITCH);
+		}
+		if(e.getKeyCode()==e.VK_X){
+			config.initialize();
+			config.pidConfig.initialize();
+			config.setOnRoll(!config.isOnRoll());
+			
+			SerialCommunication.getInstance().send(""+Messages.ACTIVATE_ROLL);
+		}
 		//START RESTART CONTROLE 
 		if(e.getKeyCode()==e.VK_ESCAPE){
 			config.initialize();
 			config.pidConfig.setToZero();
 			config.getSerial().send(""+Messages.SHUTDOWN_QUAD);
 			config.setON(false);
+			config.setOnRoll(false);
+			config.setOnPitch(false);
 		}
 		if(e.getKeyCode()==e.VK_ENTER){
 			if(!config.isON()){
@@ -25,10 +40,14 @@ public class CustomKeyListner implements KeyListener{
 				config.getSerial().send(""+Messages.RESTART_QUAD);
 				config.getSerial().send(""+Messages.ACTIVATE_PITCH);
 				config.getSerial().send(""+Messages.ACTIVATE_ROLL);
+				config.setOnPitch(true);
+				config.setOnRoll(true);
 			}else{
 				config.initialize();
 				config.pidConfig.setToZero();
 				config.getSerial().send(""+Messages.SHUTDOWN_QUAD);
+				config.setOnPitch(false);
+				config.setOnRoll(false);
 			}
 			config.setON(!config.isON());
 			

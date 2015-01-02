@@ -1,9 +1,15 @@
 
 public class PIDConfiguration {
 	SerialCommunication serial;
-	
-	public PIDConfiguration(SerialCommunication serial) {
-		this.serial=serial;
+	private static PIDConfiguration config;
+	private PIDConfiguration() {
+		this.serial=SerialCommunication.getInstance();
+	}
+	public static PIDConfiguration getInstance() {
+		// TODO Auto-generated method stub
+		if(config==null)
+			config=new PIDConfiguration();
+		return config;
 	}
 	public static double MAX_KP=20;
 	public static double MIN_KP=0;
@@ -14,6 +20,7 @@ public class PIDConfiguration {
 	public static double KP_STEP=0.1;
 	public static double KD_STEP=1;
 	public static double KI_STEP=0.01;
+	
 	
 	//PID CONTROLLE
 	private double KPP=0;
@@ -252,6 +259,7 @@ public class PIDConfiguration {
 		KDR= 0;
 		KIR= 0;
 	}
+	
 	
 	
 	
