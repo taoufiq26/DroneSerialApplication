@@ -234,13 +234,13 @@ public class PIDConfiguration {
 	}
 	public void initialize() {
 		// TODO Auto-generated method stub
-		KPP= 3.4;
-		KDP= 100;
-		KIP= 0.01;
+		KPP= 4.1;
+		KDP= 90;
+		KIP= 0.1;
 		
-		KPR= 3.4;
-		KDR= 100;
-		KIR= 0.01;
+		KPR= 4.1;
+		KDR= 90;
+		KIR= 0.1;
 	}
 	public void setToZero() {
 		// TODO Auto-generated method stub
