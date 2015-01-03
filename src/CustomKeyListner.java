@@ -13,13 +13,13 @@ public class CustomKeyListner implements KeyListener{
 		
 		if(e.getKeyCode()==e.VK_W){
 			config.initialize();
-			config.pidConfig.initialize();
+			config.pidConfig.setToZero();
 			config.setOnPitch(!config.isOnPitch());
 			SerialCommunication.getInstance().send(""+Messages.ACTIVATE_PITCH);
 		}
 		if(e.getKeyCode()==e.VK_X){
 			config.initialize();
-			config.pidConfig.initialize();
+			config.pidConfig.setToZero();
 			config.setOnRoll(!config.isOnRoll());
 			
 			SerialCommunication.getInstance().send(""+Messages.ACTIVATE_ROLL);
@@ -116,25 +116,25 @@ public class CustomKeyListner implements KeyListener{
 		//ROLL AND PITCH CONTROLE
 		if(e.getKeyCode() == e.VK_UP){
 			config.setAddingPitchError(false);
-			config.setPitchError(0);
-			config.getSerial().send(""+Messages.CLR_POFFSET);
+			//config.setPitchError(0);
+			//config.getSerial().send(""+Messages.CLR_POFFSET);
 		}
 		if(e.getKeyCode() == e.VK_DOWN){
 			config.setDecPitchError(false);
-			config.setPitchError(0);
-			config.getSerial().send(""+Messages.CLR_POFFSET);
+			//config.setPitchError(0);
+			//config.getSerial().send(""+Messages.CLR_POFFSET);
 		}
 		
 		if(e.getKeyCode() == e.VK_RIGHT){
 			config.setAddingRollError(false);
-			config.setRollError(0);
-			config.getSerial().send(""+Messages.CLR_ROFFSET);
+			//config.setRollError(0);
+			//config.getSerial().send(""+Messages.CLR_ROFFSET);
 		}
 		
 		if(e.getKeyCode() == e.VK_LEFT){
 			config.setDecRollError(false);
-			config.setRollError(0);
-			config.getSerial().send(""+Messages.CLR_ROFFSET);
+			//config.setRollError(0);
+			//config.getSerial().send(""+Messages.CLR_ROFFSET);
 		}
 		
 		//PID PITCH

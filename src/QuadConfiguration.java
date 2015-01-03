@@ -6,9 +6,9 @@ public class QuadConfiguration {
 	public static int MAX_SPEED=2000;
 	public static double speedStep=10;
 	
-	public static double MAX_ERROR=40;
-	public static double MIN_ERROR=-40;
-	public static double ERROR_STEP=0.5;
+	public static double MAX_ERROR=25;
+	public static double MIN_ERROR=-25;
+	public static double ERROR_STEP=1.5;
 	//CONFIGURATION STATE
 	// START AND STOP
 	private boolean ON=false;
