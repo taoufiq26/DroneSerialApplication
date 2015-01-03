@@ -7,10 +7,17 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 
 public class ControllerPanel extends JPanel{
+	private static ControllerPanel panel;
 	QuadConfiguration config;
-	public ControllerPanel(QuadConfiguration config) {
+	private ControllerPanel() {
 		// TODO Auto-generated constructor stub
-		this.config=config;
+		config=QuadConfiguration.getInstance();
+	}
+	public static ControllerPanel getInstance() {
+		// TODO Auto-generated method stub
+		if(panel==null)
+			panel=new ControllerPanel();
+		return panel;
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -22,6 +29,7 @@ public class ControllerPanel extends JPanel{
 		
 		paintRollBar(g,Color.blue, 80, 320, 60, 20);
 		paintPitchBar(g,Color.red,130,270,20,60);
+		paintPitchRoleState(g, Color.yellow, 10, 10);
 		DecimalFormat df=new DecimalFormat("#0.00");
 		g.drawString("PITCH PID", 300, 10);
 		paintPIDBar(g, Color.red, 250, 20, "KPP : "+df.format(config.getPidConfig().getKPP()), 100, config.getPidConfig().getKPP()*(100/PIDConfiguration.MAX_KP));
@@ -104,5 +112,13 @@ public class ControllerPanel extends JPanel{
 		else
 			g.fillRect(x, y+h-(int)(p*ratio),w, (int) (p*ratio));
 		g.drawString("PitchE :"+p, (int) (x-15), y-15);
+	}
+	
+	public void paintPitchRoleState(Graphics g, Color c, int x,int y){
+		g.setColor(c);
+		String s= config.isOnPitch()?"Pitch On":"Pitch off";
+		g.drawString(s, x, y);
+		s= config.isOnRoll()?"Roll On":"Roll off";
+		g.drawString(s, x+100, y);
 	}
 }

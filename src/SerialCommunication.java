@@ -13,6 +13,7 @@ public class SerialCommunication implements SerialPortEventListener {
 
 	
 
+	private static SerialCommunication serial;
 	SerialPort serialPort;
 	/** The port we're normally going to use. */
 	private static final String PORT_NAMES[] = {"COM8" };
@@ -20,7 +21,15 @@ public class SerialCommunication implements SerialPortEventListener {
 	private OutputStream output;
 	private static final int TIME_OUT = 2000;
 	private static final int DATA_RATE = 115200;
-
+	private SerialCommunication() {
+		// TODO Auto-generated constructor stub
+	}
+	public static SerialCommunication getInstance() {
+		// TODO Auto-generated method stub
+		if(serial==null)
+			serial=new SerialCommunication();
+		return serial;
+	}
 	public void initialize() {
 
 		CommPortIdentifier portId = null;
@@ -96,6 +105,7 @@ public class SerialCommunication implements SerialPortEventListener {
 			e.printStackTrace();
 		}
 	}
+
 
 }
 
